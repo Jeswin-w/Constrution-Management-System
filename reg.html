@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>filter</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script type="text/javascript" src="work.js"></script> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="usestyle.css">
+</head>
+<body ng-app="">
+    <center><h1>Register form</h1></center>
+    <br>
+    <div class="container">
+        <form class="form-control" name="rform">
+            <div class='row'>
+                <div class='col-sm-6'>
+                <label >name: </label>
+                <input  class='form-control' ng-model='uname' name='uname' required>
+                
+                <span ng-show="rform.uname.$touched && rform.uname.$invalid">The name is required.</span></div>
+               
+                <div class='col-sm-6'>
+                <label>email:</label>
+                <input type='email' class='form-control' ng-model='email' name='email' required>
+                <span ng-show="rform.email.$touched && rform.email.$invalid">The email is required.</span></div>
+            </div>
+            
+            <div class='row'>
+                <div class='col-sm-6'>
+                <label >Phone no: </label>
+                <input type='text' class='form-control'></div>
+                <div class='col-sm-6'>
+                </div>
+            </div>
+            <label>address: </label>
+            <textarea class='form-control'></textarea>
+            <br>
+            <center>
+            <button class='btn btn-info'>submit</button></center>
+            </form>
+            </div>
+            </body>
+            </html>
