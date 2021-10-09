@@ -5,7 +5,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script type="text/javascript" src="rso.js"></script> 
+<script type="text/javascript" src="scripts/rso.js"></script> 
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="#">Winn Constructions - Admin</a>
+            <a class="navbar-brand" href="#">Winn Constructions - Worker</a>
 
 
             <ul class="navbar-nav justify-content-end">
@@ -36,17 +36,24 @@
     <div ng-controller='addres as itemAdder'> 
     <input type="text" ng-model="itemAdder.itemName" placeholder="Resourcename"> 
     <input type="text" ng-model="itemAdder.itemQuantity" placeholder="quantity"> 
-    <button ng-click="itemAdder.addItem();">Add itemt</button> 
-    </div> <br>
+    <input type="text" ng-model="itemAdder.itemprice" placeholder="price">
+    <button ng-click="itemAdder.addItem();">Add item</button> 
+     <br>
     <div ng-controller='showres as showList'>
+        <br>
      <table class="container">
          <tr>
          <th>Name</th>
          <th>Quantity</th>
+         <th>Price</th>
+         <th>total</th>
          <th>Remove</th>
+         
         </tr>
         
     <tr ng-repeat="item in showList.items"> <td>{{ item.name }}</td><td>{{ item.quantity }} </td>
+        <td>{{item.price|currency: "Rs: " : 2 }}</td>
+        <td><total></total></td>
     <td><button ng-click="showList.removeItem($index);">Remove item</button> </td>
 </tr>
 

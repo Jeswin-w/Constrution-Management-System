@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>filter</title>
+<title>Register form</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
@@ -33,15 +33,18 @@
             <div class='row'>
                 <div class='col-sm-6'>
                 <label >Phone no: </label>
-                <input type='text' class='form-control'></div>
+                <input  class='form-control' ng-model='pno' name='pno' required></div>
+                <span ng-show="rform.pno.$touched && rform.pno.$invalid">The phone no is required.</span>
                 <div class='col-sm-6'>
                 </div>
             </div>
             <label>address: </label>
-            <textarea class='form-control'></textarea>
+            <textarea class='form-control'name='add' ng-model='add' required></textarea>
+            <span ng-show="rform.add.$touched && rform.add.$invalid">The address no is required.</span>
             <br>
             <center>
-            <button class='btn btn-info'>submit</button></center>
+            <button class='btn btn-info' onclick="window.location.href='user.html'">submit</button><br><br>
+            <a href="login.html"><p>Already have an account</p></a></center>
             </form>
             </div>
             </body>
