@@ -28,4 +28,9 @@ app.get('/getwork.html', function (req, res) {
 app.get('/progress.html', function (req, res) {
   res.sendFile(`${__dirname}/progress.html`);
 })
+app.post('/reg', (req, res) => {
+  const username = req.body.username
+  //...
+  res.end()
+})
 app.listen(port, () => console.log('The server running on Port '+port));
