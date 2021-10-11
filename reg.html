@@ -16,7 +16,7 @@
     <center><h1>Register form</h1></center>
     <br>
     <div class="container">
-        <form class="form-control" name="rform">
+        <form class="form-control" name="rform" action="http://127.0.0.1:8080/login.html" method="post">
             <div class='row'>
                 <div class='col-sm-6'>
                 <label >name: </label>
@@ -29,21 +29,23 @@
                 <input type='email' class='form-control' ng-model='email' name='email' required>
                 <span ng-show="rform.email.$touched && rform.email.$invalid">The email is required.</span></div>
             </div>
-            
+            <br>
             <div class='row'>
                 <div class='col-sm-6'>
                 <label >Phone no: </label>
                 <input  class='form-control' ng-model='pno' name='pno' required></div>
                 <span ng-show="rform.pno.$touched && rform.pno.$invalid">The phone no is required.</span>
                 <div class='col-sm-6'>
+                    <label>Password: </label>
+            <input type='password'class='form-control' name='pwd' ng-model='pwd' required>
+            <span ng-show="rform.pwd.$touched && rform.pwd.$invalid">password is required.</span>
                 </div>
             </div>
-            <label>address: </label>
-            <textarea class='form-control'name='add' ng-model='add' required></textarea>
-            <span ng-show="rform.add.$touched && rform.add.$invalid">The address no is required.</span>
+            
+            
             <br>
             <center>
-            <button class='btn btn-info' onclick="window.location.href='user.html'">submit</button><br><br>
+            <input type="submit"></input><br><br>
             <a href="login.html"><p>Already have an account</p></a></center>
             </form>
             </div>

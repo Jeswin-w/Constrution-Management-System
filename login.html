@@ -2,6 +2,10 @@
 <html>
 <head>
 <title>login</title>
+<style>
+    h3{
+        text-align:center;
+    }</style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
@@ -17,7 +21,7 @@
     <br>
     <h3>Login</h3><br>
     <br>
-    <form class="container" style="width:30%;border:solid 0.5px;" ng-app="" name="lform"><br>
+    <form class="container" style="width:30%;border:solid 0.5px;" ng-app="" name="lform" action="http://127.0.0.1:8080/user.html" method="post"><br>
         
         <label>email:</label>
                 <input type='email' class='form-control' ng-model='email' name='email' required>
