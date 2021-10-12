@@ -72,9 +72,6 @@ if (req.method === 'POST' && req.url=="/user.html") {
       });
     
     });
-
-
-
 }
   
 }).listen(8080);

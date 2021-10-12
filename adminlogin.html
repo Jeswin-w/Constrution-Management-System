@@ -19,9 +19,9 @@
 </head>
 <body>
     <br>
-    <h3>Login</h3><br>
+    <h3>Admin -Login</h3><br>
     <br>
-    <form class="container" style="width:30%;border:solid 0.5px;" ng-app="" name="lform" action="login" method="post"><br>
+    <form class="container" style="width:30%;border:solid 0.5px;" ng-app="" name="lform" action="alogin" method="post"><br>
         
         <label>email:</label>
                 <input type='email' class='form-control' ng-model='email' name='email' required>
@@ -31,7 +31,7 @@
         <span ng-show="lform.pwd.$touched && lform.pwd.$invalid">The password is required.</span><br>
         <center><button class="btn btn-primary"  onclick="window.location.href='user.html'">Login</button>
         <br><br>
-    <a href="reg.html">Register</a></center><br>
+    </center><br>
 
         
     </form>
