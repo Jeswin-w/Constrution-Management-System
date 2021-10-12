@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+var ObjectId = require('mongodb').ObjectId
 var url1 = "mongodb://localhost:27017/";
  
 
@@ -14,9 +14,20 @@ app.use(express.urlencoded({
 }))
 app.use(express.static('images'));
 app.use(express.static('scripts'));
-app.get('/adminlogin.html', function (req, res) {
-    res.sendFile(`${__dirname}/adminlogin.html`);
+app.use('/adminlogin.html', function (req, res) {
+    res.sendFile(`${__dirname}\\adminlogin.html`);
   })
+  app.post('/as',async function (req, res) {
+    console.log(req.query.id);
+    res.send(`<script>window.location.href="assign.html?id=${req.query.id}"</script>`)
+    res.end();
+
+
+  })
+  app.get('/assign.html', async function (req, res) {
+    res.sendFile(`${__dirname}/assign.html`);
+})
+  
   app.get('/admin.html', async function (req, res) {
       var tasks;
     async function findOne() {
@@ -41,7 +52,7 @@ app.get('/adminlogin.html', function (req, res) {
     }
     await findOne();
     console.log(tasks);
-    res.send(`<!DOCTYPE html>
+    res.write(`<!DOCTYPE html>
     <html>
     <head>
     <title>filter</title>
@@ -56,7 +67,7 @@ app.get('/adminlogin.html', function (req, res) {
         <link rel="stylesheet" href="usestyle.css">
         
     </head>
-    <body>
+    <body ng-app="myApp">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
     
@@ -74,10 +85,27 @@ app.get('/adminlogin.html', function (req, res) {
     
             </div>
         </nav>
-        <h2>Tasks</h2>
         
+        <h3 style="text-align:center">Tasks</h3><br><br>
+        <div class="container">
+        <h4>
+        
+        
+        `)
+    
+    for (var i in tasks)
+    {
+        
+        res.write(`<div class="row" style="background-color:black;color:white;border-radius:25px"><div class='col-sm-5'><br>Name: ${tasks[i]["uname"]}<br><br> email: ${tasks[i]["email"]}</div>`);
+        res.write(`<div class='col-sm-5'><br>Phone: ${tasks[i]["pno"]}<br><br> address: ${tasks[i]["add"]}</div>`);
+        res.write(`<div class='col-sm-2'><form method='post' action='/as?id=${tasks[i]["_id"]}'><br><br><br><input type='submit' value='Assign'></form></div>`);
+        res.write(`<div><br>Desc: ${tasks[i]["desc"]}<br></div><br><br><hr style="color:white><br></div>`)
+
+    }
+    res.write(`</h4>
+    </div>
     </body>
-    </html>`);
+    </html>`)
     res.end();
   })
 

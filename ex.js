@@ -86,15 +86,11 @@ app.post('/login',async (req, res) => {
 
     } finally {
         client.close();
-
     }
-
 }
 await findOne();
-  
   if (user.length==0)
   {
-    
     str="<script>window.alert('wrong password or email');window.location.href = 'login.html';</script>";
   }
   else
@@ -102,9 +98,7 @@ await findOne();
     str=`<script>window.location.href = 'user.html?em=${user[0]["email"]}';</script>`;
     
   }
-  
   res.send(str);
-
  res.end();
 })
 
@@ -155,6 +149,5 @@ await findOne();
   });
   res.send(`<script>window.location.href = 'user.html';</script>`);
  res.end();
-}
-)
+})
 app.listen(port, () => console.log('The server running on Port '+port));
