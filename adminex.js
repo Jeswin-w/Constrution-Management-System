@@ -25,9 +25,40 @@ app.use('/adminlogin.html', function (req, res) {
 
   })
   app.get('/assign.html', async function (req, res) {
-    res.sendFile(`${__dirname}/assign.html`);
+      console.log(req.query.id);
+    res.cookie("_id",req.query.id).sendFile(`${__dirname}/assign.html`);
+
 })
-  
+app.get('/worker.html', async function (req, res) {
+    
+    res.sendFile(`${__dirname}/worker.html`);
+       
+})
+app.get('/worker', async function (req, res) {
+    var wk;
+    async function findOne() {
+        const client = await MongoClient.connect(url1, { useNewUrlParser: true }).catch(err => { console.log(err); });
+    
+        if (!client) {
+            return;
+        }
+        try {
+            const db = client.db("cms");
+            let collection = db.collection('workers');
+            wk = await collection.find().toArray();
+            
+        } catch (err) {
+            console.log(err);
+    
+        } finally {
+            client.close();
+        }
+    }
+    await findOne();
+    console.log(wk);
+    res.send(wk);
+       
+})
   app.get('/admin.html', async function (req, res) {
       var tasks;
     async function findOne() {
@@ -71,16 +102,14 @@ app.use('/adminlogin.html', function (req, res) {
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
     
-                <a class="navbar-brand" href="#">Winn Constructions - Admin</a>
+                <a class="navbar-brand" href="admin.html">Winn Constructions - Admin</a>
     
     
                 <ul class="navbar-nav justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Employees</a>
+                        <a class="nav-link active" aria-current="page" href="worker.html">Employees</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="assign.html">Assign</a>
-                    </li>
+                    
                 </ul>
     
             </div>
@@ -124,5 +153,56 @@ app.use('/adminlogin.html', function (req, res) {
     res.send(str);
     res.end();
   });
+
+  app.post('/addwork', (req,res) => {
+    var obj=req.body;
+    console.log(obj);
+    MongoClient.connect(url1, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("cms");
+      
+      dbo.collection("workers").insertOne(obj, function(err, res) {
+        if (err) throw err;
+        console.log("1 document inserted");
+        
+        db.close();
+      });
+      
+    });
+    res.send(`<script>window.location.href = 'admin.html';</script>`);
+   res.end();
+  });
+  app.get('/delwk', async function (req, res) {
+    
+    console.log(req.query);
+       
+})
+
+app.post('/as1',function(req,res){
+    var obj=req.body;
+    var id=req.cookies["_id"];
+    var obj1={};
+    obj1["_id"]=ObjectId(id);
+    MongoClient.connect(url1, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("cms");
+        
+        dbo.collection("aswork").insertOne(obj, function(err, res) {
+          if (err) throw err;
+          console.log("1 document inserted");
+        });
+        dbo.collection("task").deleteOne(obj1,function(err, res) {
+            if (err) throw err;
+            console.log("1 document deleted");
+          
+          db.close();
+        });
+
+    })
+    res.send("<script>window.location.href = 'admin.html';</script>");
+    res.end();
+
+})
    
 app.listen(port, () => console.log('The server running on Port '+port));
+

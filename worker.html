@@ -5,7 +5,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script type="text/javascript" src="scripts/work.js"></script> 
+<script type="text/javascript" src="work.js"></script> 
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,16 +17,14 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="#">Winn Constructions - Admin</a>
+            <a class="navbar-brand" href="admin.html">Winn Constructions - Admin</a>
 
 
             <ul class="navbar-nav justify-content-end">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Employees</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="assign.html">Assign</a>
-                </li>
+               
             </ul>
 
         </div>
@@ -46,16 +44,17 @@
                         <th>Work</th>
                         <th>Email</th>
                         <th>Phone no: </th>
-                        <th>Delete</th>
+                        
+                        
 
                     </tr>
-                    <tr ng-repeat="x in worker_records | filter:{'Name':name}">
+                    <tr ng-repeat="x in worker_records | filter:{'name1':name}">
 
-                        <td>{{x.Name}}</td>
-                        <td>{{x.work}}</td>
+                        <td>{{x.name1}}</td>
+                        <td>{{x.work1}}</td>
                         <td>{{x.email}}</td>
-                        <td>{{x.Phone}}</td>
-                        <td><button class="btn btn-danger" ng-click="removework($index)">remove</button></td>
+                        <td>{{x.pno}}</td>
+                       
 
 
                     </tr>
@@ -63,31 +62,31 @@
                 <br>
                 <div class="container" style="border:solid;border-radius:10px" >
                     <h3>Add</h3>
-                    <form>
+                    <form method="post" action="addwork">
                         <div class="row">
                             <div class="col-sm-6">
 
                                 Name:
-                                <input type="text" class="form-control" ng-model="name1">
+                                <input type="text" class="form-control" ng-model="name1" name="name1">
 
                             </div>
                             <div class="col-sm-6">
                                 Work:
-                                <input type="text" class="form-control" ng-model="work1"><br><br>
+                                <input type="text" class="form-control" ng-model="work1" name="work1"><br><br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <label>email:   </label>
-                                <input type="email" ng-model="email" class="form-control">
+                                <input type="email" ng-model="email" class="form-control" name="email">
                             </div>
                             <div class="col-sm-6">
                                 <label>Phone no:</label>
-                                <input type="text" ng-model="phone" class="form-control"><br><br>
+                                <input type="text" ng-model="phone" class="form-control" name="pno"><br><br>
 
                             </div>
                         </div>
-                        <button class="btn btn-primary" ng-click="addwork()">Add</button>
+                        <input type="submit" value="add" class="btn btn-info">
                     </form>
                 </div>
             </div>

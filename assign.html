@@ -14,16 +14,14 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="#">Winn Constructions - Admin</a>
+            <a class="navbar-brand" href="admin.html">Winn Constructions - Admin</a>
 
 
             <ul class="navbar-nav justify-content-end">
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="worker.html">Employees</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">assign</a>
-                </li>
+                
             </ul>
 
         </div>
@@ -33,13 +31,14 @@
     </div>
     <h3>Assign</h3>
     <br />
-    <form class="form-control" f>
+    <form class="form-control" method="post" action="/as1">
         <div class="row">
             <div class="col-sm-4">
                 <h5 style="text-align:center">Engineer :</h5>
             </div>
             <div class="col-sm-8">
-                <select class="form-control" ng-model="engineer">
+                <select class="form-control" ng-model="engineer" name="engineer">
+                    <option></option>
                     <option>Ram</option>
                     <option>Roy</option>
                 </select>
@@ -51,7 +50,8 @@
                 <h5 style="text-align:center">Plumber :</h5>
             </div>
             <div class="col-sm-8">
-                <select class="form-control" ng-model="plumber">
+                <select class="form-control" ng-model="plumber" name="plumber">
+                    <option></option>
                     <option>Suresh</option>
                     <option>Antony</option>
                     <option>Maran</option>
@@ -64,7 +64,8 @@
                 <h5 style="text-align:center">Electrician :</h5>
             </div>
             <div class="col-sm-8">
-                <select class="form-control" ng-model="elec">
+                <select class="form-control" ng-model="elec" name="electrician">
+                    <option></option>
                     <option>Rahul</option>
                     <option>Siddharth</option>
                 </select>
@@ -76,14 +77,15 @@
                 <h5 style="text-align:center">Painter :</h5>
             </div>
             <div class="col-sm-8">
-                <select class="form-control" ng-model="paint">
+                <select class="form-control" ng-model="paint" name="painter">
+                    <option></option>
                     <option>Ganesh</option>
                     <option>Ramesh</option>
                 </select>
             </div>
         </div>
         <br><center>
-        <button class="btn btn-info">Assign</button>
+        <input type="submit" class="btn btn-primary" value="Assign">
     </center>
     </form>
 </body>

@@ -22,9 +22,14 @@
         };
         return factory;
     });
-    firstController.$inject=['$scope',fac];
-    function firstController($scope,fac){
-        $scope.worker_records = worker_records;
+    
+    firstController.$inject=['$scope',fac,'$http'];
+    function firstController($scope,fac,$http){
+        $http.get('/worker').then(function(data){
+            $scope.worker_records = data.data;
+            
+        });
+        
         $scope.addwork=function(){
             $scope.result=fac.Add($scope.name1, $scope.work1,$scope.email,$scope.phone);};
         $scope.removework=function(idx){
