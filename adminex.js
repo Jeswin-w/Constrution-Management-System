@@ -1,9 +1,7 @@
 const express = require('express');
 const app = express();
-var ObjectId = require('mongodb').ObjectId
+var ObjectId = require('mongodb').ObjectId;
 var url1 = "mongodb://localhost:27017/";
- 
-
 var MongoClient = require('mongodb').MongoClient;
 const port = 3006;
 
